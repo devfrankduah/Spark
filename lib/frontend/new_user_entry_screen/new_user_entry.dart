@@ -40,7 +40,7 @@ class _TakePrimaryUserDataState extends State<TakePrimaryUserData> {
   @override
   Widget build(BuildContext context) {
      return Scaffold(
-        backgroundColor: kWhite,
+        backgroundColor: Colors.amber,
         body: LoadingOverlay(
      isLoading: _isLoading,
      child: Padding(
@@ -65,13 +65,13 @@ class _TakePrimaryUserDataState extends State<TakePrimaryUserData> {
       padding: const EdgeInsets.only(top: 20.0, bottom: 70.0, left: 30.0),
       child:
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
-        Text('Almost there',
+        Text('A few more steps',
             style: TextStyle(
                 color: kBlack,
                 fontSize: 30.0,
                 letterSpacing: 1.0,
                 fontWeight: FontWeight.w700)),
-        Text('Please fill in the input below',
+        Text('Please fill in the fields below',
             style: TextStyle(
                 color: kGrey,
                 fontSize: 14.0,
@@ -145,7 +145,7 @@ class _TakePrimaryUserDataState extends State<TakePrimaryUserData> {
                 child: profilePic == null
                     ? CircleAvatar(
                         radius: 50,
-                        backgroundColor: kPrimaryAppColor,
+                        backgroundColor: kBrown,
                         child: Image.asset(
                           "assets/images/add_pic.png",
                           height: 80.0,

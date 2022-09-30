@@ -14,6 +14,10 @@ import 'package:spark/global_uses/enum_generation.dart';
 import 'package:spark/global_uses/reg_exp.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:spark/global_uses/alert.dart';
+import 'package:spark/views/home/home_screen.dart';
+import 'package:spark/views/vehicle/add_vehicle_screen.dart';
+
+//import 'package:api_image_upload/home_screen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -40,23 +44,21 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
-   return Scaffold(
-     
-         backgroundColor: Color.fromARGB(255, 255, 228, 152),
-         body: LoadingOverlay(
-             isLoading: _isLoading,
-            child:Padding(
-     padding: const EdgeInsets.only(top:12.0), 
-     child:ListView(shrinkWrap: true, children: <Widget>[
-               _signupText(),
-               _signupForm(),
-               _signupButton(),
-               // _orContinueWithSocialMediaText(),
-               // _socialMediaIntegrationButtons(),
-               _switchToLoginPage()
-         ]))),
-   );
-    
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255, 255, 228, 152),
+      body: LoadingOverlay(
+          isLoading: _isLoading,
+          child: Padding(
+              padding: const EdgeInsets.only(top: 12.0),
+              child: ListView(shrinkWrap: true, children: <Widget>[
+                _signupText(),
+                _signupForm(),
+                _signupButton(),
+                // _orContinueWithSocialMediaText(),
+                // _socialMediaIntegrationButtons(),
+                _switchToLoginPage()
+              ]))),
+    );
   }
 
 //Methods
@@ -98,10 +100,10 @@ class _SignUpPageState extends State<SignUpPage> {
             focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(50)),
                 borderSide: BorderSide(color: kPrimaryAppColor)),
-                 errorBorder: const OutlineInputBorder(
+            errorBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(50)),
                 borderSide: BorderSide(color: kPrimaryAppColor)),
-                 focusedErrorBorder: const OutlineInputBorder(
+            focusedErrorBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(50)),
                 borderSide: BorderSide(color: kPrimaryAppColor)),
           )),
@@ -246,21 +248,19 @@ class _SignUpPageState extends State<SignUpPage> {
 
             //if signup is completed
             if (response == EmailSignUpResults.signUpCompleted) {
-              
-              
               //display appropriate alert message
               alert(
                   title: 'Email verification link has been sent',
                   context: context);
-              Timer(const Duration(seconds: 2), () => Navigator.pop(context));
-               //hides the keyboard
-            SystemChannels.textInput.invokeMethod('TextInput.hide');
+              //Timer(const Duration(seconds: 2), () => Navigator.pop(context));
+              //hides the keyboard
+              SystemChannels.textInput.invokeMethod('TextInput.hide');
               // ScaffoldMessenger.of(context)
               //     .showSnackBar(snackBar('email verification link sent'));
 
               ///navigate to [loginPage] once signup is completed
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()));
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => AddPhotoScreen()));
             }
             //if email already exist display appropriate message
             else {
@@ -271,8 +271,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
               alert(title: msg, context: context);
               Timer(const Duration(seconds: 2), () => Navigator.pop(context));
-               //hides the keyboard
-            SystemChannels.textInput.invokeMethod('TextInput.hide');
+              //hides the keyboard
+              SystemChannels.textInput.invokeMethod('TextInput.hide');
               //ScaffoldMessenger.of(context).showSnackBar(snackBar(msg));
             }
           }
@@ -344,8 +344,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 //display appropriate alert message
                 alert(title: msg, context: context);
                 Timer(const Duration(seconds: 2), () => Navigator.pop(context));
-                 //hides the keyboard
-            SystemChannels.textInput.invokeMethod('TextInput.hide');
+                //hides the keyboard
+                SystemChannels.textInput.invokeMethod('TextInput.hide');
 
                 // ScaffoldMessenger.of(context).showSnackBar(snackBar(msg));
 
@@ -390,7 +390,7 @@ class _SignUpPageState extends State<SignUpPage> {
   ///button to switch to [LoginPage]
   Widget _switchToLoginPage() {
     return Padding(
-      padding: const EdgeInsets.only(top:45.0),
+      padding: const EdgeInsets.only(top: 45.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
